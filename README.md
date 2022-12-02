@@ -8,7 +8,7 @@ PASSWORD: 2222
 ## usersテーブル
 ### Association
 has_many :items
-has_many :order
+has_many :orders
 | Column             | Type   | Options                   |
 | ------------------ | ------ | ------------------------- |
 | nickname           | string | null: false               |
