@@ -8,23 +8,22 @@ PASSWORD: 2222
 ## usersテーブル
 ### Association
 has_many :items
-has_many :orders
-| Column          | Type   | Options     |
-| --------------- | ------ | ----------- |
-| nickname        | string | null: false |
-| last_name       | string | null: false |
-| first_name      | string | null: false |
-| kana_last_name  | string | null: false |
-| kana_first_name | string | null: false |
-| email           | string | null: false |
-| password        | string | null: false |
-| birthday        | date   | null: falde |
-
+has_many :order
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| kana_last_name     | string | null: false               |
+| kana_first_name    | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| birthday           | date   | null: falde               | 
 
 ## itemsテーブル
 ### Association
 belongs_to :user
-has_one :orders
+has_one :order
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | name               | string     | null: false                    |
@@ -41,16 +40,16 @@ has_one :orders
 
 ## addresses テーブル
 ### Association
-belongs_to :orders
-| Column         | Type    | Options                        |
-|--------------- | ------- | ------------------------------ |
-| num            | string  | null: false                    |
-| prefectures_id | integer | null: false                    |
-| city           | string  | null: false                    |
-| area           | string  | null: false                    |
-| building       | string  |                                |
-| phone          | string  | null: false                    |
-| order          | integer | null: false, foreign_key: true |
+belongs_to :order
+| Column         | Type       | Options                        |
+|--------------- | ---------- | ------------------------------ |
+| num            | string     | null: false                    |
+| prefectures_id | integer    | null: false                    |
+| city           | string     | null: false                    |
+| area           | string     | null: false                    |
+| building       | string     |                                |
+| phone          | string     | null: false                    |
+| order          | references | null: false, foreign_key: true |
 
 
 ## ordersテーブル
