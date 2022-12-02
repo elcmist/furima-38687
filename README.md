@@ -31,7 +31,7 @@ has_one :order
 | category_id        | integer    | null: false                    |
 | status_id          | integer    | null: false                    |
 | delivery_cost_id   | integer    | null: false                    |
-| delivery_origin_id | integer    | null: false                    |
+| prefectures_id     | integer    | null: false                    |
 | delivery_days_id   | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
