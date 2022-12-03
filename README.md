@@ -1,24 +1,64 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## BASIC認証情報
+ID: admin
+PASSWORD: 2222
 
-Things you may want to cover:
 
-* Ruby version
+## usersテーブル
+### Association
+has_many :items
+has_many :orders
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| kana_last_name     | string | null: false               |
+| kana_first_name    | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| birthday           | date   | null: falde               | 
 
-* System dependencies
+## itemsテーブル
+### Association
+belongs_to :user
+has_one :order
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| name               | string     | null: false                    |
+| explanation        | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
+| delivery_cost_id   | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| delivery_days_id   | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
-* Configuration
 
-* Database creation
 
-* Database initialization
+## addresses テーブル
+### Association
+belongs_to :order
+| Column         | Type       | Options                        |
+|--------------- | ---------- | ------------------------------ |
+| num            | string     | null: false                    |
+| prefecture_id  | integer    | null: false                    |
+| city           | string     | null: false                    |
+| area           | string     | null: false                    |
+| building       | string     |                                |
+| phone          | string     | null: false                    |
+| order          | references | null: false, foreign_key: true |
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## ordersテーブル
+### Association
+belongs_to :item
+belongs_to :user
+has_one :address
 
-* Deployment instructions
-
-* ...
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
