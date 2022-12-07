@@ -13,6 +13,6 @@ const profit = document.getElementById("profit")
     
     Net_income = (price - tax_price);
     profit.innerHTML = Net_income
-    console.log(profit)
+    
   })
 })
