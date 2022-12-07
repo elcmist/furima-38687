@@ -64,7 +64,8 @@ RSpec.describe Item, type: :model do
       it'価格が入力されていない時' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+       
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
       it'価格が300未満の時' do

@@ -11,7 +11,7 @@ const profit = document.getElementById("profit")
     tax_price = Math.floor(price/10);
     content.innerHTML = tax_price
     
-    Net_income = (price - tax_price);
+    Net_income = Math.floor(price - tax_price);
     profit.innerHTML = Net_income
     
   })
