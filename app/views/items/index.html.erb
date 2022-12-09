@@ -127,10 +127,10 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-<% @item.each do |item|%>
+<% @items.each do |item|%>
       
       <li class='list'>
-        <%= link_to items_path(item.id) do %>
+        <%= link_to item_path(item.id) do %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
@@ -159,7 +159,7 @@
       </li>
        <% end %>
      
-      <% if @item.empty? %>
+      <% if @items.empty? %>
       <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
