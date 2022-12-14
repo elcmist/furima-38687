@@ -8,6 +8,9 @@ class ItemOrder
        # validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
        validates :phone, format: { with: /\A\d{11}\z/ }
     
+       validates :user_id
+       validates :item_id
+
      with_options format: { with: /\A\d{3}[-]\d{4}\z/ } do
        validates :num, length: { is: 8 } 
      end
