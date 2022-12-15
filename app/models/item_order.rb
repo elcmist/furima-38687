@@ -7,7 +7,7 @@ class ItemOrder
        validates :prefecture_id, numericality: { other_than: 0 }
        validates :num, format: { with: /\A\d{3}[-]\d{4}\z/ }
        validates :phone, format: { with: /\A\d{11}\z/ }
-    
+       validates :token
        validates :user_id
        validates :item_id
 
