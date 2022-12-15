@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_item, only:[:index, :create]
 
   def index
-    @item_order = ItemOrder.new
+    
 
     if user_signed_in? && current_user.id != @item.user_id && @item.order == nil
       @item_order = ItemOrder.new
@@ -40,10 +40,7 @@ class OrdersController < ApplicationController
 
   def pay_item
    
-    # Payjp.api_key =  "sk_test_d25c2a39703ee19a7311087c"
     Payjp.api_key =  ENV["PAYJP_SECRET_KEY"]
-  #   Payjp::Charge.create( amount: @item.price, card: order_params[:token], currency: 'jpy' )
-  # end
     
     Payjp::Charge.create(amount: @item.price,     # 商品の値段
       card: order_params[:token],     # カードトークン
