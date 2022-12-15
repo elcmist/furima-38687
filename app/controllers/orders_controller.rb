@@ -4,22 +4,20 @@ class OrdersController < ApplicationController
 
   def index
     @item_order = ItemOrder.new
-    # if current_user.id == @item.user_id || @item.order.present? 
-    #   redirect_to root_path
 
-    
-    # if user_signed_in? && current_user.id != @item.user_id && @item.order == nil
-    #   @item_order = ItemOrder.new
-    # else
-    #   redirect_to root_path
-    # end
+    if user_signed_in? && current_user.id != @item.user_id && @item.order == nil
+      @item_order = ItemOrder.new
+    else
+      redirect_to root_path
+    end
+
   end
 
   def create
-   
+  
     @item_order = ItemOrder.new(order_params)
     if @item_order.valid?
-      # pay_item
+      pay_item
       @item_order.save
       return redirect_to root_path
     else
@@ -40,13 +38,17 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  # def pay_item
-  #   Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-  #   Payjp::Charge.create(
-  #     amount: @item.price,     # 商品の値段
-  #     card: order_params[:token],     # カードトークン
-  #     currency:'jpy'              # 通貨の種類（日本円）
-  #   )
+  def pay_item
+   
+    # Payjp.api_key =  "sk_test_d25c2a39703ee19a7311087c"
+    Payjp.api_key =  ENV["PAYJP_SECRET_KEY"]
+  #   Payjp::Charge.create( amount: @item.price, card: order_params[:token], currency: 'jpy' )
   # end
+    
+    Payjp::Charge.create(amount: @item.price,     # 商品の値段
+      card: order_params[:token],     # カードトークン
+      currency:'jpy'              # 通貨の種類（日本円）
+    )
+  end
 
 end

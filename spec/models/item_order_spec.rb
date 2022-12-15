@@ -36,7 +36,9 @@ RSpec.describe ItemOrder, type: :model do
     # <%〜がからでは出品出来ない%>
 
     it "tokenが空では登録できない" do
-     
+      @address.token = nil
+      @address.valid?
+      expect(@address.errors.full_messages).to include("Token can't be blank")
     end
 
     it '郵便番号が空では購入できない' do
@@ -84,10 +86,10 @@ RSpec.describe ItemOrder, type: :model do
     end
 
     it '都道府県に「---」が選択されている場合は購入出来ない' do
-        @address.prefecture_id = '1' 
+        @address.prefecture_id = '0' 
         @address.valid?
 
-        expect(@address.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@address.errors.full_messages).to include("Prefecture must be other than 0")
     end
 
     it '電話番号が12桁以上だと購入できない' do
@@ -127,8 +129,6 @@ RSpec.describe ItemOrder, type: :model do
   
 
   
-
-    
 
 
 
