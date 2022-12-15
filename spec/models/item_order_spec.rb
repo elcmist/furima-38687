@@ -125,15 +125,6 @@ RSpec.describe ItemOrder, type: :model do
       
       expect(@address.errors.full_messages).to include("Item can't be blank")
     end
-
-  
-
-  
-
-
-
-
-
-    
+ 
   end
 end
