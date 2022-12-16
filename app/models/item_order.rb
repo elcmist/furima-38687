@@ -5,7 +5,7 @@ class ItemOrder
   with_options presence: true do
        validates :city, :area
        validates :prefecture_id, numericality: { other_than: 0 }
-       validates :num 
+      #  validates :num 
        validates :phone, format: { with: /\A\d{10}$|^\d{11}\z/ }
        validates :token
        validates :user_id
@@ -17,7 +17,7 @@ class ItemOrder
  end
 
    def save
-      # 各テーブルにデータを保存する処理を書く      prefecture_id
+      # 各テーブルにデータを保存する処理を書く  
       order = Order.create(user_id: user_id, item_id: item_id)
       Address.create( num: num, prefecture_id: prefecture_id, city: city, area: area, building: building, phone: phone, order_id: order.id)
       
