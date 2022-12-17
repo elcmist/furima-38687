@@ -38,7 +38,7 @@ RSpec.describe ItemOrder, type: :model do
     it "tokenが空では登録できない" do
       @address.token = nil
       @address.valid?
-      expect(@address.errors.full_messages).to include("Token can't be blank")
+      expect(@address.errors.full_messages).to include("クレジットカード情報を入力してください")
     end
 
     it '郵便番号が空では購入できない' do
@@ -46,32 +46,32 @@ RSpec.describe ItemOrder, type: :model do
         @address.num = nil
         @address.valid?
        
-        expect(@address.errors.full_messages).to include("Num can't be blank")
+        expect(@address.errors.full_messages).to include("郵便番号を入力してください")
     end
 
     it '都道府県が空では購入できない' do
         @address.prefecture_id = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@address.errors.full_messages).to include("都道府県を入力してください")
     end
 
     it '市区町村が空では購入できない' do
         @address.city = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("City can't be blank")
+        expect(@address.errors.full_messages).to include("市区町村を入力してください")
 
     end
 
     it '番地が空では購入できない' do
         @address.area = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("Area can't be blank")
+        expect(@address.errors.full_messages).to include("番地を入力してください")
     end
 
     it '電話番号が空では購入できない' do
         @address.phone = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("Phone can't be blank")
+        expect(@address.errors.full_messages).to include("電話番号を入力してください")
     end
 
     # <%〜が空では出品出来ない%>
@@ -82,32 +82,32 @@ RSpec.describe ItemOrder, type: :model do
     it '郵便番号は「-」を含まないと購入できない' do
         @address.num = '1234567'
         @address.valid?
-        expect(@address.errors.full_messages).to include("Num is invalid")
+        expect(@address.errors.full_messages).to include("郵便番号は不正な値です")
     end
 
     it '都道府県に「---」が選択されている場合は購入出来ない' do
         @address.prefecture_id = '0' 
         @address.valid?
 
-        expect(@address.errors.full_messages).to include("Prefecture must be other than 0")
+        expect(@address.errors.full_messages).to include("都道府県は0以外の値にしてください")
     end
 
     it '電話番号が12桁以上だと購入できない' do
       @address.phone ='123456789012'
         @address.valid?
-        expect(@address.errors.full_messages).to include("Phone is invalid")
+        expect(@address.errors.full_messages).to include("電話番号は不正な値です")
     end
 
     it '電話番号が9桁以下だと購入できない' do
         @address.phone = '123456789'
         @address.valid?
-        expect(@address.errors.full_messages).to include("Phone is invalid")
+        expect(@address.errors.full_messages).to include("電話番号は不正な値です")
     end
 
     it '電話番号が半角数値以外で入力されていると購入できない' do
         @address.phone = 'ああああああ'
         @address.valid?
-        expect(@address.errors.full_messages).to include("Phone is invalid")
+        expect(@address.errors.full_messages).to include("電話番号は不正な値です")
     end
 
     # <%正規表現条件%>
@@ -116,14 +116,14 @@ RSpec.describe ItemOrder, type: :model do
       @address.user_id = nil
       @address.valid?
     
-      expect(@address.errors.full_messages).to include("User can't be blank")
+      expect(@address.errors.full_messages).to include("ユーザーを入力してください")
     end
 
     it 'item_idが結びついていなければ購入できない' do
       @address.item_id = nil
       @address.valid?
       
-      expect(@address.errors.full_messages).to include("Item can't be blank")
+      expect(@address.errors.full_messages).to include("商品コードを入力してください")
     end
  
   end
